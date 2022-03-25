@@ -141,13 +141,28 @@ void affichage(int compteur){
     }
 }   
 
+std::vector<std::string> player() {
+    std::vector<std::string> liste_joueur;
+    std::string joueur1;
+    std::string joueur2;
+    printf("Joueur 1 : ");
+    std::cin >> joueur1;
+    printf("\nJoueur 2 : ");
+    std::cin >> joueur2;
+    liste_joueur.push_back(joueur1);
+    liste_joueur.push_back(joueur2);
+    return liste_joueur;
+}
 
 int main(int argc, char* argv[]) {
     char letter;
     int compteur = 0;
     std::string word;
-    std::vector<char> lettres;
-    printf("Joueur 1, choisissez un mot a faire deviner a Joueur 2 : ");
+    std::vector<std::string> joueurs;
+    joueurs = player();
+    std::string joueur1 = joueurs[0];
+    std::string joueur2 = joueurs[1];
+    cout<<joueur1<<", choisissez un mot a faire choisir a "<<joueur2<<" : ";
     std::cin >> word;
     system("cls");
     std::string mot_mystere = mystery_word(word);
@@ -167,7 +182,11 @@ int main(int argc, char* argv[]) {
         cout<<mot_mystere<<std::endl;
         printf("\n");
         if (compteur == 10){
+            cout<<joueur1<<" a gagne !"<<std::endl;
             break;
+        }
+        if (word == mot_mystere) {
+            cout<<joueur2<<" a gagne !"<<std::endl;
         }
     } while(word != mot_mystere);
     cout<<"Le mot etait "<<word<<" !"<<std::endl;
