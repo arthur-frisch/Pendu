@@ -182,7 +182,11 @@ int main(int argc, char* argv[]) {
         cout<<mot_mystere<<std::endl;
         printf("\n");
         if (compteur == 10){
+            cout<<joueur1<<" a gagne !"<<std::endl;
             break;
+        }
+        if (word == mot_mystere) {
+            cout<<joueur2<<" a gagne !"<<std::endl;
         }
     } while(word != mot_mystere);
     cout<<"Le mot etait "<<word<<" !"<<std::endl;
