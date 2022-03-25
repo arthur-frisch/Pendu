@@ -171,6 +171,7 @@ int main(int argc, char* argv[]) {
         }
     } while(word != mot_mystere);
     cout<<"Le mot etait "<<word<<" !"<<std::endl;
+    printf("Bien joué !");
     printf("Appuie sur s pour stopper le programme : ");
     char stop;
     std::cin>>stop;
