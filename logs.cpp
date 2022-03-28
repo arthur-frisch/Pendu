@@ -3,10 +3,11 @@
 #include <string>
 #include <vector>
 
-void add_text(std::string filename, std::string text){
+void add_text_move(std::string player, char letter){
     std::fstream logs;
+    std::string filename = "logs";
     logs.open(filename.c_str(), std::ios_base::app);
-    logs<<text<<std::endl;
+    logs<<"Le joueur "<<player<<" a joué la lettre "<<letter<<std::endl;
     logs.close();
 }
 
@@ -30,12 +31,8 @@ std::vector<std::string> read_text(std::string text){
     return tab;
 }
 
-
 int main(int argc, char* argv[]) {
-    std::string file = "logs";
-    std::string texte = "Bonjour je m'appelle farouk";
-    std::vector<std::string> tab;
-    tab = read_text(texte);
-    std::cout<<tab[2]<<std::endl;
+    char letter = 'e';
+    add_text_move("Arthur", letter);
     return 0;
 }
