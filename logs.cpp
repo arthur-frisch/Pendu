@@ -11,6 +11,14 @@ void add_text_move(std::string player, char letter){
     logs.close();
 }
 
+void add_text_winner(std::string player){
+    std::fstream logs;
+    std::string filename = "logs";
+    logs.open(filename.c_str(), std::ios_base::app);
+    logs<<"Le joueur "<<player<<" a gagné la partie !"<<std::endl;
+    logs.close();
+}
+
 std::vector<std::string> read_text(std::string text){
     std::vector<std::string> tab;
     int compteur = 0;
@@ -31,8 +39,29 @@ std::vector<std::string> read_text(std::string text){
     return tab;
 }
 
+int process_logs(std::string player){
+    std::fstream logs;
+    std::string filename = "logs";
+    std::string excla = "!";
+    int compteur = 0;
+    std::vector<std::string> tab;
+    logs.open(filename.c_str(), std::ios_base::in);
+    std::string line;
+    while(getline(logs, line)){
+        tab = read_text(line);
+        if ((tab[tab.size()-1] == excla) && (tab[2] == player)){
+            compteur++;
+        }
+    }
+    logs.close();
+    return compteur;   
+}
+
 int main(int argc, char* argv[]) {
     char letter = 'e';
-    add_text_move("Arthur", letter);
+    int compteur;
+    add_text_winner("Jade");
+    compteur = process_logs("Arthur");
+    std::cout<<compteur<<std::endl;
     return 0;
 }
