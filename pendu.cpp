@@ -1,7 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
 #include <cstring>
+#include "logs.h"
 using std::cout;
 
 bool is_letter(std::string word, char letter){
@@ -169,6 +167,7 @@ int main(int argc, char* argv[]) {
     do {
         printf("Choisissez une lettre : ");
         std::cin >> letter;
+        add_text_move(joueur2, letter);
         if (is_letter(word, letter)) {
             std::vector<int> position = find_letter(word, letter);
             mot_mystere = replace(mot_mystere, letter, position);
@@ -183,10 +182,17 @@ int main(int argc, char* argv[]) {
         printf("\n");
         if (compteur == 10){
             cout<<joueur1<<" a gagne !"<<std::endl;
+            add_text_winner(joueur1);
+            process_logs(joueur1);
+            int nb_win = process_logs(joueur1);
+            cout<<nb_win<<" victoire pour "<<joueur1<<std::endl;
             break;
         }
         if (word == mot_mystere) {
             cout<<joueur2<<" a gagne !"<<std::endl;
+            add_text_winner(joueur2);
+            int nb_win = process_logs(joueur2);
+            cout<<nb_win<<" victoire pour "<<joueur2<<std::endl;
         }
     } while(word != mot_mystere);
     cout<<"Le mot etait "<<word<<" !"<<std::endl;
